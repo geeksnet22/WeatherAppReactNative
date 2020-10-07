@@ -1,11 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import React, { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import * as Location from "expo-location";
+import * as Permissions from "expo-permissions";
+import DataFethcher from "./utils/DataFetcher";
 
-export default function App() {
+function App() {
+  const [location, setLocation] = useState("");
+  _getUserLocation = async () => {
+    const { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== "granted") {
+      setLocation("permission not granted");
+    } else {
+      const userLocation = await Location.getCurrentPositionAsync();
+      setLocation(userLocation.coords.longitude);
+    }
+  };
+  _getUserLocation();
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <DataFethcher />
       <StatusBar style="auto" />
     </View>
   );
@@ -14,8 +28,10 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "flex-start",
   },
 });
+
+export default App;
