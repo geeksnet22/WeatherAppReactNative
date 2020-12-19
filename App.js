@@ -1,10 +1,9 @@
 import React from "react";
-import UserLocationWeatherLayout from "./UserLocationWeatherLayout";
-
+import UserLocationWeatherInfo from "./UserLocationWeatherInfo";
 
 function App() {
   return (
-        <UserLocationWeatherLayout />
+        <UserLocationWeatherInfo />
         )};
 
 export default App;
