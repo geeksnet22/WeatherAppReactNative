@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, FlatList, SafeAreaView } from "react-native";
-import { SearchBar } from 'react-native-elements';
+import { StyleSheet, Text, View, FlatList, SafeAreaView, Button } from "react-native";
+import { ScrollView } from 'react-native-gesture-handler';
 import * as Location from "expo-location";
 import * as Permissions from "expo-permissions";
-import { ScrollView } from "react-native-gesture-handler";
 import CurrentItem from "./components/CurrentItem.js";
 import HourlyItem from "./components/HourlyItem.js";
 import DailyItem from "./components/DailyItem.js";
 import DetailsItem from "./components/DetailsItem.js";
 
-function UserLocationWeatherInfo() {
+function UserLocationWeatherInfo({ navigation }) {
     // raw weather data
     const [rawWeatherData, setRawWeatherData] = useState()
     // current location name
     const [city, setCity] = useState();
     // location search
-    const [locationSearch, setLocationSearch] = useState()
+    // const [locationSearch, setLocationSearch] = useState()
   
     useEffect(() => {
       Permissions.askAsync(Permissions.LOCATION).then((json) => 
@@ -41,11 +40,7 @@ function UserLocationWeatherInfo() {
     else {
       return (
         <View style={styles.overallContaianer}>
-          <SearchBar lightTheme={true}
-            placeholder="Search Location..."
-            onChangeText={setLocationSearch}
-            value={locationSearch}
-          />
+          <Button title="Saarch Location" onPress={() => navigation.navigate('Searched Location')}/>
           <ScrollView style={{paddingHorizontal: 10}}>
             <CurrentItem city={city} temperature={rawWeatherData.currently.temperature} 
             summary={rawWeatherData.currently.summary}/>
@@ -82,7 +77,6 @@ function UserLocationWeatherInfo() {
     overallContaianer: {
       flex: 1,
       backgroundColor: "#00CCFF",
-      paddingTop: 24,
       paddingBottom: 10
     },
     hourlyContainer: {

@@ -1,4 +1,5 @@
 import React from "react";
+import Geocode from "react-geocode";
 
 export function getDateFromTimestamp(timestamp) {
     return new Date(timestamp * 1000);
@@ -51,4 +52,16 @@ export function getDayNameFromDayNumber(dayNumber) {
     else {
         return "Very High"
     }
+  }
+
+  export function getCoordinatesFromLocationName(locationName) {
+    Geocode.setApiKey("AIzaSyBL9YKtKQSP373OJS67uXcgsaUXoyv8DBU");
+    Geocode.fromAddress("Eiffel Tower").then(
+      response => {
+        return { lat, lng } = response.results[0].geometry.location;
+      },
+      error => {
+        console.error(error);
+      }
+    );
   }

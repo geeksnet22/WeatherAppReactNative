@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, FlatList, SafeAreaView, TextBase } from "react-native";
+import { StyleSheet, Text, View, FlatList, SafeAreaView, ScrollView } from "react-native";
 import * as Location from "expo-location";
-import { ScrollView } from "react-native-gesture-handler";
-import { CurrentItem } from "./components/CurrentItem.js";
-import { HourlyItem } from "./components/HourlyItem.js";
-import { DailyItem } from "./components/DailyItem.js";
-import { DetailsItem } from "./components/DetailsItem.js";
+import CurrentItem from "./components/CurrentItem.js";
+import HourlyItem from "./components/HourlyItem.js";
+import DailyItem from "./components/DailyItem.js";
+import DetailsItem from "./components/DetailsItem.js";
+import { getCoordinatesFromLocationName } from "./utils/UtilFunctions.js";
 
 function SearchedLocationWeatherInfo(props) {
     // raw weather data
     const [rawWeatherData, setRawWeatherData] = useState()
     // current location name
     const [city, setCity] = useState();
-    // location search
-    const [locationSearch, setLocationSearch] = useState()
   
     useEffect(() => {
-          fetch(`https://api.darksky.net/forecast/7d7c4d51abd38384fd51a174d0771a5d/${userLocation.coords.latitude},${userLocation.coords.longitude}/units=ca`)
+          // const { lat, lng } = getCoordinatesFromLocationName("props.location");
+          const { lat, lng } = {lat: 51.049999, lng: -114.066666}
+          fetch(`https://api.darksky.net/forecast/7d7c4d51abd38384fd51a174d0771a5d/${lat},${lng}?units=ca`)
           .then(response => response.json() ).then(data => {
             // set weather data
             setRawWeatherData(data);
@@ -25,7 +25,7 @@ function SearchedLocationWeatherInfo(props) {
           })
           .catch((error) => console.error(error))
     }, []);
-  
+
     if (rawWeatherData === undefined) {
       return <View />
     }
@@ -68,7 +68,6 @@ function SearchedLocationWeatherInfo(props) {
     overallContaianer: {
       flex: 1,
       backgroundColor: "#00CCFF",
-      paddingTop: 24,
       paddingBottom: 10
     },
     currentContainer: {

@@ -8,23 +8,27 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "@react-native-community/masked-view": "0.1.10",
     "@react-navigation/native": "^5.8.10",
+    "@react-navigation/stack": "^5.12.8",
+    "core-js": "^3.8.1",
     "expo": "~39.0.2",
     "expo-location": "^9.0.0",
     "expo-permissions": "~9.3.0",
     "expo-status-bar": "~1.0.2",
+    "fsevents": "^2.2.1",
+    "lodash.merge": "^4.6.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
+    "react-geocode": "^0.2.2",
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.2.tar.gz",
-    "react-native-elements": "^3.0.1",
     "react-native-geocoding": "^0.4.0",
-    "react-native-vector-icons": "^7.1.0",
-    "react-native-web": "~0.13.12",
     "react-native-gesture-handler": "~1.7.0",
     "react-native-reanimated": "~1.13.0",
     "react-native-screens": "~2.10.1",
-    "react-native-safe-area-context": "3.1.4",
-    "@react-native-community/masked-view": "0.1.10"
+    "react-native-searchbar": "^1.16.0",
+    "react-native-vector-icons": "^7.1.0",
+    "react-native-web": "~0.13.12"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0"
